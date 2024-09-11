@@ -1,5 +1,8 @@
+pip install plotly
+
 import streamlit as st
 import pandas as pd
+import plotly.graph_objects as go
 
 # Sample data
 data = {
@@ -39,15 +42,41 @@ with col1:
 with col2:
     st.subheader("Percentage Breakdown")
     
-    # Create a DataFrame for the stacked bar chart
-    chart_data = df[["name", "cheaper", "withinSensitivity", "moreExpensive"]]
-    chart_data = chart_data.set_index("name")
+    # Create a horizontal stacked bar chart using plotly
+    fig = go.Figure()
     
-    # Transpose the DataFrame to switch axes
-    chart_data_transposed = chart_data.T
+    fig.add_trace(go.Bar(
+        y=df['name'],
+        x=df['cheaper'],
+        name='Cheaper',
+        orientation='h',
+        marker=dict(color='#4CAF50')
+    ))
+    fig.add_trace(go.Bar(
+        y=df['name'],
+        x=df['withinSensitivity'],
+        name='Within Sensitivity',
+        orientation='h',
+        marker=dict(color='#FFC107')
+    ))
+    fig.add_trace(go.Bar(
+        y=df['name'],
+        x=df['moreExpensive'],
+        name='More Expensive',
+        orientation='h',
+        marker=dict(color='#F44336')
+    ))
     
-    # Display the stacked bar chart
-    st.bar_chart(chart_data_transposed)
+    fig.update_layout(
+        barmode='stack',
+        height=400,
+        margin=dict(l=0, r=0, t=0, b=0),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        xaxis_title="Percentage",
+        yaxis_title="Website",
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
 
 # Add some spacing
 st.write("\n\n")
