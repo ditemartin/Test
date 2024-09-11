@@ -26,29 +26,28 @@ st.dataframe(df.style.format({
     "priceIndex": "{:.2f}"
 }))
 
-# Side-by-side layout
+# Side-by-side layout for Basic Information and Percentage Breakdown
+st.header("Basic Information and Percentage Breakdown")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.header("Basic Information")
+    st.subheader("Basic Information")
     st.dataframe(df[["name", "products", "priceIndex"]].style.format({
         "priceIndex": "{:.2f}"
     }))
 
 with col2:
-    st.header("Percentage Breakdown")
+    st.subheader("Percentage Breakdown")
     
     # Create a DataFrame for the stacked bar chart
     chart_data = df[["name", "cheaper", "withinSensitivity", "moreExpensive"]]
     chart_data = chart_data.set_index("name")
     
+    # Transpose the DataFrame to switch axes
+    chart_data_transposed = chart_data.T
+    
     # Display the stacked bar chart
-    st.bar_chart(chart_data)
-
-    # Display percentages as text
-    for index, row in df.iterrows():
-        st.write(f"{row['name']}:")
-        st.write(f"Cheaper: {row['cheaper']:.2f}% | Within Sensitivity: {row['withinSensitivity']:.2f}% | More Expensive: {row['moreExpensive']:.2f}%")
+    st.bar_chart(chart_data_transposed)
 
 # Add some spacing
 st.write("\n\n")
