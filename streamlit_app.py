@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import plotly.graph_objects as go
 
 # Sample data
 data = {
@@ -39,45 +38,14 @@ with col1:
 with col2:
     st.header("Percentage Breakdown")
     
-    fig = go.Figure()
+    # Create a DataFrame for the stacked bar chart
+    chart_data = df[["name", "cheaper", "withinSensitivity", "moreExpensive"]]
+    chart_data = chart_data.set_index("name")
     
-    for index, row in df.iterrows():
-        fig.add_trace(go.Bar(
-            y=[row["name"]],
-            x=[row["cheaper"]],
-            name="Cheaper",
-            orientation="h",
-            marker=dict(color="green"),
-            showlegend=index == 0
-        ))
-        fig.add_trace(go.Bar(
-            y=[row["name"]],
-            x=[row["withinSensitivity"]],
-            name="Within Sensitivity",
-            orientation="h",
-            marker=dict(color="yellow"),
-            showlegend=index == 0
-        ))
-        fig.add_trace(go.Bar(
-            y=[row["name"]],
-            x=[row["moreExpensive"]],
-            name="More Expensive",
-            orientation="h",
-            marker=dict(color="red"),
-            showlegend=index == 0
-        ))
+    # Display the stacked bar chart
+    st.bar_chart(chart_data)
 
-    fig.update_layout(
-        barmode="stack",
-        height=400,
-        margin=dict(l=0, r=0, t=0, b=0),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-        xaxis_title="Percentage",
-        yaxis_title="Website",
-    )
-
-    st.plotly_chart(fig, use_container_width=True)
-
+    # Display percentages as text
     for index, row in df.iterrows():
         st.write(f"{row['name']}:")
         st.write(f"Cheaper: {row['cheaper']:.2f}% | Within Sensitivity: {row['withinSensitivity']:.2f}% | More Expensive: {row['moreExpensive']:.2f}%")
