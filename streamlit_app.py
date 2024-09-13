@@ -7,10 +7,10 @@ np.random.seed(42)
 values = np.random.normal(loc=100, scale=20, size=500)  # mean=100, std=20
 
 # Clip the data to ensure the lowest value is 55 and highest is 155
-values = np.clip(values, 55, 155)
+values = np.clip(values, 55, 145)
 
-# Defining 9 bins between 55 and 155
-bins = np.linspace(55, 155, 10)
+# Defining 9 bins between 55 and 145
+bins = np.linspace(55, 145, 10)
 
 # Creating histogram data
 hist_data = np.histogram(values, bins=bins)
@@ -21,7 +21,7 @@ for i in range(len(hist_data[1]) - 1):
     if i == 0:
         hover_text.append(f'Count: {hist_data[0][i]}<br>(<65)')  # First bin hover text
     elif i == len(hist_data[1]) - 2:
-        hover_text.append(f'Count: {hist_data[0][i]}<br>(>145)')  # Last bin hover text
+        hover_text.append(f'Count: {hist_data[0][i]}<br>(>135)')  # Last bin hover text
     else:
         hover_text.append(f'Count: {hist_data[0][i]}<br>({hist_data[1][i]} - {hist_data[1][i+1]})')
 
