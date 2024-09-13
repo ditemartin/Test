@@ -26,6 +26,7 @@ start_date = pd.Timestamp.today() - pd.Timedelta(days=90)
 end_date = pd.Timestamp.today()
 
 # UI for filtering by product URL and date range (on one row)
+st.header("Vývoj cen u produktu XXX")
 selected_url = st.selectbox("", options=product_urls, label_visibility="collapsed")
 col1, col2 = st.columns(2)
 with col1:
@@ -39,14 +40,13 @@ filtered_data = df[(df['Date'] >= pd.to_datetime(start_date_input)) &
                    (df['Product URL'] == selected_url)]
 
 # Plot price trends
-fig = px.line(filtered_data, x='Date', y='Price', color='Store', line_shape='spline',
-              title='Vývoj cen u produktu XXX', labels={'Price': 'Cena', 'Store': ''})
+fig = px.line(filtered_data, x='Date', y='Price', color='Store', line_shape='spline', labels={'Price': 'Cena', 'Store': ''})
 fig.update_xaxes(dtick="M7", tickformat="%d-%m-%Y")  # Weekly ticks in dd-mm-yyyy format
 fig.update_yaxes(tickprefix="", tickformat=",.0f Kč")
 st.plotly_chart(fig)
 
 # Calculate price change percentages for each store (first to last value) and display below the chart
-st.subheader("Celková změna ceny")
+st.markdown("<h6>Celková změna ceny</h6>", unsafe_allow_html=True)
 for store in stores:
     store_data = filtered_data[filtered_data['Store'] == store]
     if len(store_data) > 1:
