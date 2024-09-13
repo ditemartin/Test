@@ -26,7 +26,7 @@ for i in range(len(hist_data[1]) - 1):
         hover_text.append(f'Count: {hist_data[0][i]}<br>({hist_data[1][i]} - {hist_data[1][i+1]})')
 
 # Custom colors for the bins
-color_map = ['#B9DC6B' if hist_data[1][i] < 95 else '#F96C6C' if hist_data[1][i] > 105 else '#FFE897' 
+color_map = ['#B9DC6B' if hist_data[1][i] < 95 else '#F96C6C' if hist_data[1][i] > 105.001 else '#FFE897' 
              for i in range(len(hist_data[1]) - 1)]
 
 # Add bars for all bins with hovertext showing count and range
