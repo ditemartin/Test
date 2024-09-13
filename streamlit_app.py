@@ -1,9 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.graph_objects as go
 import plotly.express as px
-from scipy.interpolate import make_interp_spline
 
 # Generating random dates for the X-axis (weekly)
 dates = pd.date_range(start='2023-09-01', periods=7, freq='D')
@@ -31,32 +29,22 @@ df.rename(columns={'index': 'Date'}, inplace=True)
 product_urls = [f"https://example.com/product-{i}" for i in range(1, 6)]
 df['Product URL'] = np.random.choice(product_urls, size=len(df))
 
-# Sidebar filters
-st.sidebar.header("Filter Options")
-selected_url = st.sidebar.selectbox("Select Product URL", options=product_urls)
-start_date = st.sidebar.date_input("Start Date", value=pd.to_datetime('2023-09-01'))
-end_date = st.sidebar.date_input("End Date", value=pd.to_datetime('2023-09-07'))
+# Main layout filters (instead of sidebar)
+st.header("Filter Options")
+selected_url = st.selectbox("Select Product URL", options=product_urls)
+col1, col2 = st.columns(2)
+with col1:
+    start_date = st.date_input("Start Date", value=pd.to_datetime('2023-09-01'))
+with col2:
+    end_date = st.date_input("End Date", value=pd.to_datetime('2023-09-07'))
 
 # Filter data by date and product URL
 filtered_data = df[(df['Date'] >= pd.to_datetime(start_date)) & 
                    (df['Date'] <= pd.to_datetime(end_date)) & 
                    (df['Product URL'] == selected_url)]
 
-# Apply cubic spline interpolation for smooth lines
-interpolated_data = pd.DataFrame()
-for store in stores:
-    store_data = filtered_data[filtered_data['Store'] == store]
-    if len(store_data) > 1:
-        x_new = np.linspace(store_data['Date'].map(pd.Timestamp.toordinal).min(),
-                            store_data['Date'].map(pd.Timestamp.toordinal).max(), 300)
-        spline = make_interp_spline(store_data['Date'].map(pd.Timestamp.toordinal), store_data['Price'], k=3)
-        y_new = spline(x_new)
-        temp_df = pd.DataFrame({'Date': pd.to_datetime(x_new, origin='julian', unit='D'), 
-                                'Price': y_new, 'Store': store})
-        interpolated_data = pd.concat([interpolated_data, temp_df])
-
-# Plot the smooth lines
-fig = px.line(interpolated_data, x='Date', y='Price', color='Store',
+# Plot the smooth lines using line_shape='spline' for smooth curves
+fig = px.line(filtered_data, x='Date', y='Price', color='Store', line_shape='spline',
               title='Vývoj cen u produktu XXX',
               labels={'Price': 'Cena (Kč)', 'Date': 'Date', 'Store': 'Store'})
 
