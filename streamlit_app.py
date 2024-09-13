@@ -6,8 +6,11 @@ import plotly.graph_objects as go
 np.random.seed(42)
 values = np.random.normal(loc=100, scale=20, size=500)  # mean=100, std=20
 
+# Clip the data to ensure the lowest value is 55 and highest is 155
+values = np.clip(values, 55, 155)
+
 # Defining custom bin edges
-bins = [0, 65] + list(range(65, 145, 10)) + [145, 200]
+bins = [55, 65] + list(range(65, 145, 10)) + [145, 155]
 
 # Creating histogram data
 hist_data = np.histogram(values, bins=bins)
@@ -18,51 +21,36 @@ fig = go.Figure()
 # Define bin centers for bar plot
 bin_centers = 0.5 * (hist_data[1][1:] + hist_data[1][:-1])
 
-# Adding hover information for bin ranges
-hover_text = [f'Range: {hist_data[1][i]} - {hist_data[1][i+1]}' for i in range(len(hist_data[1]) - 1)]
+# Adding hover information for bin ranges and number of items in the bin
+hover_text = []
+for i in range(len(hist_data[1]) - 1):
+    if i == 0:
+        hover_text.append(f'Range: <65, Count: {hist_data[0][i]}')  # First bin hover text
+    elif i == len(hist_data[1]) - 2:
+        hover_text.append(f'Range: >145, Count: {hist_data[0][i]}')  # Last bin hover text
+    else:
+        hover_text.append(f'Range: {hist_data[1][i]} - {hist_data[1][i+1]}, Count: {hist_data[0][i]}')
 
 # Uniform width for all bins
 uniform_width = 10  # Set the desired uniform width for all bins
 
-# Add bars for values below 95 (green) with uniform bin widths and hovertext
+# Add bars for all bins with uniform bin widths and hovertext showing range and count
 fig.add_trace(go.Bar(
-    x=bin_centers[bin_centers < 95],
-    y=hist_data[0][bin_centers < 95],
-    marker_color='green',
-    name='Values below 95',
-    hovertext=[hover_text[i] for i in range(len(hover_text)) if bin_centers[i] < 95],
+    x=bin_centers,
+    y=hist_data[0],
+    marker_color=['green' if center < 95 else 'red' if center > 105 else 'orange' for center in bin_centers],
+    hovertext=hover_text,
     hoverinfo="text",
-    width=[uniform_width] * sum(bin_centers < 95)  # Apply uniform width
+    width=[uniform_width] * len(bin_centers)  # Apply uniform width to all bins
 ))
 
-# Add bars for values between 95 and 105 (orange) with uniform bin widths and hovertext
-fig.add_trace(go.Bar(
-    x=bin_centers[(bin_centers >= 95) & (bin_centers <= 105)],
-    y=hist_data[0][(bin_centers >= 95) & (bin_centers <= 105)],
-    marker_color='orange',
-    name='Values between 95 and 105',
-    hovertext=[hover_text[i] for i in range(len(hover_text)) if (bin_centers[i] >= 95) & (bin_centers[i] <= 105)],
-    hoverinfo="text",
-    width=[uniform_width] * sum((bin_centers >= 95) & (bin_centers <= 105))  # Apply uniform width
-))
-
-# Add bars for values above 105 (red) with uniform bin widths and hovertext
-fig.add_trace(go.Bar(
-    x=bin_centers[bin_centers > 105],
-    y=hist_data[0][bin_centers > 105],
-    marker_color='red',
-    name='Values above 105',
-    hovertext=[hover_text[i] for i in range(len(hover_text)) if bin_centers[i] > 105],
-    hoverinfo="text",
-    width=[uniform_width] * sum(bin_centers > 105)  # Apply uniform width
-))
-
-# Update layout with custom bins and axis titles
+# Update layout with custom bins and axis titles, and remove the legend
 fig.update_layout(
-    title='Histogram of Normally Distributed Values with Uniform Bin Widths',
+    title='Histogram of Normally Distributed Values (Clipped) with Uniform Bin Widths',
     xaxis_title='Values',
     yaxis_title='Frequency',
     bargap=0.1,
+    showlegend=False,  # Remove the legend
     xaxis=dict(tickmode='array', tickvals=bins),
 )
 
