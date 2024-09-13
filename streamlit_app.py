@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import plotly.graph_objects as go
 import plotly.express as px
+from scipy.interpolate import make_interp_spline
 
-# Simulate dynamic price fluctuations using a random walk for 5 stores over a week
+# Generating random dates for the X-axis (weekly)
 dates = pd.date_range(start='2023-09-01', periods=7, freq='D')
 stores = ['Store A', 'Store B', 'Store C', 'Store D', 'Store E']
 
@@ -40,13 +42,44 @@ filtered_data = df[(df['Date'] >= pd.to_datetime(start_date)) &
                    (df['Date'] <= pd.to_datetime(end_date)) & 
                    (df['Product URL'] == selected_url)]
 
-# Plot the price trends
-fig = px.line(filtered_data, x='Date', y='Price', color='Store',
-              title=f'Price Trends for {selected_url}',
-              labels={'Price': 'Price (in currency)', 'Date': 'Date', 'Store': 'Store'})
+# Apply cubic spline interpolation for smooth lines
+interpolated_data = pd.DataFrame()
+for store in stores:
+    store_data = filtered_data[filtered_data['Store'] == store]
+    if len(store_data) > 1:
+        x_new = np.linspace(store_data['Date'].map(pd.Timestamp.toordinal).min(),
+                            store_data['Date'].map(pd.Timestamp.toordinal).max(), 300)
+        spline = make_interp_spline(store_data['Date'].map(pd.Timestamp.toordinal), store_data['Price'], k=3)
+        y_new = spline(x_new)
+        temp_df = pd.DataFrame({'Date': pd.to_datetime(x_new, origin='julian', unit='D'), 
+                                'Price': y_new, 'Store': store})
+        interpolated_data = pd.concat([interpolated_data, temp_df])
+
+# Plot the smooth lines
+fig = px.line(interpolated_data, x='Date', y='Price', color='Store',
+              title='Vývoj cen u produktu XXX',
+              labels={'Price': 'Cena (Kč)', 'Date': 'Date', 'Store': 'Store'})
+
+# Update x-axis frequency to weekly and y-axis format to "Kč"
+fig.update_xaxes(dtick="M1", tickformat="%d-%b")  # Show monthly, you can modify for weekly
+fig.update_yaxes(tickprefix="", tickformat=",.0f Kč")
 
 # Display the plot
 st.plotly_chart(fig)
+
+# Calculate percentage change in price for each store
+st.subheader("Price Change Percentages")
+price_change = []
+for store in stores:
+    store_data = filtered_data[filtered_data['Store'] == store].copy()
+    store_data['Percent Change'] = store_data['Price'].pct_change() * 100  # Calculate percentage change
+    store_data.dropna(inplace=True)  # Drop first row because there's no previous value to compare
+
+    # Display the percentage changes
+    for _, row in store_data.iterrows():
+        color = 'green' if row['Percent Change'] < 0 else 'red'
+        st.markdown(f"**{row['Store']} on {row['Date'].date()}:** "
+                    f"<span style='color:{color}'>{row['Percent Change']:.2f}%</span>", unsafe_allow_html=True)
 
 # Show the filtered data as a table (optional)
 st.write("Filtered Data", filtered_data)
