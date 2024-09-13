@@ -1,85 +1,56 @@
 import streamlit as st
-import pandas as pd
+import numpy as np
+import plotly.express as px
 import plotly.graph_objects as go
 
-# Sample data
-data = {
-    "name": ["Website #27", "Website #29", "Website #19", "Website #4", "Website #15", "Website #1", "Website #12", "Website #23"],
-    "products": [2, 5, 7, 13, 9, 12, 8, 13],
-    "cheaper": [100, 40, 42.86, 23.08, 22.22, 16.67, 37.50, 38.46],
-    "withinSensitivity": [0, 20, 14.29, 23.08, 44.44, 41.67, 12.50, 15.38],
-    "moreExpensive": [0, 40, 42.85, 53.84, 33.34, 41.66, 50.00, 46.16],
-    "priceIndex": [75.34, 89.93, 96.58, 96.64, 99.74, 100.39, 100.46, 100.58]
-}
+# Generating 500 normally distributed values between 0 and 200
+np.random.seed(42)
+values = np.random.normal(loc=100, scale=20, size=500)  # mean=100, std=20
 
-df = pd.DataFrame(data)
+# Creating custom bin edges
+bins = [0, 65] + list(range(65, 145, 10)) + [145, 200]
 
-st.set_page_config(layout="wide")
+# Creating a histogram
+fig = go.Figure()
 
-st.title("Website #13: Cheaper Within price sensitivity More expensive")
+# Add bars for the histogram with green color for values below 95
+fig.add_trace(go.Histogram(
+    x=values[values < 95],
+    xbins=dict(start=0, end=200, size=10),
+    marker_color='green',
+    name='Values below 95',
+    autobinx=False
+))
 
-# Original Table
-st.header("Original Table")
-st.dataframe(df.style.format({
-    "cheaper": "{:.2f}%",
-    "withinSensitivity": "{:.2f}%",
-    "moreExpensive": "{:.2f}%",
-    "priceIndex": "{:.2f}"
-}))
+# Add bars for the histogram with red color for values above 105
+fig.add_trace(go.Histogram(
+    x=values[values > 105],
+    xbins=dict(start=0, end=200, size=10),
+    marker_color='red',
+    name='Values above 105',
+    autobinx=False
+))
 
-# Side-by-side layout for Basic Information and Percentage Breakdown
-st.header("Basic Information and Percentage Breakdown")
-col1, col2 = st.columns(2)
+# Add bars for values between 95 and 105, keeping the color neutral
+fig.add_trace(go.Histogram(
+    x=values[(values >= 95) & (values <= 105)],
+    xbins=dict(start=0, end=200, size=10),
+    marker_color='orange',
+    name='Values between 95 and 105',
+    autobinx=False
+))
 
-with col1:
-    st.subheader("Basic Information")
-    st.dataframe(df[["name", "products", "priceIndex"]].style.format({
-        "priceIndex": "{:.2f}"
-    }))
-
-with col2:
-    st.subheader("Percentage Breakdown")
-    
-    # Create a horizontal stacked bar chart using plotly
-    fig = go.Figure()
-    
-    fig.add_trace(go.Bar(
-        y=df['name'],
-        x=df['cheaper'],
-        name='Cheaper',
-        orientation='h',
-        marker=dict(color='#4CAF50')
-    ))
-    fig.add_trace(go.Bar(
-        y=df['name'],
-        x=df['withinSensitivity'],
-        name='Within Sensitivity',
-        orientation='h',
-        marker=dict(color='#FFC107')
-    ))
-    fig.add_trace(go.Bar(
-        y=df['name'],
-        x=df['moreExpensive'],
-        name='More Expensive',
-        orientation='h',
-        marker=dict(color='#F44336')
-    ))
-    
-    fig.update_layout(
-        barmode='stack',
-        height=400,
-        margin=dict(l=0, r=0, t=0, b=0),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-        xaxis_title="Percentage",
-        yaxis_title="Website",
+# Update layout with custom bins
+fig.update_layout(
+    title='Histogram of Normally Distributed Values',
+    xaxis_title='Values',
+    yaxis_title='Frequency',
+    bargap=0.1, 
+    xaxis=dict(
+        tickmode='array',
+        tickvals=bins
     )
-    
-    st.plotly_chart(fig, use_container_width=True)
+)
 
-# Add some spacing
-st.write("\n\n")
-
-# Display raw data (optional)
-if st.checkbox("Show raw data"):
-    st.subheader("Raw data")
-    st.write(df)
+# Display the plot
+st.plotly_chart(fig)
