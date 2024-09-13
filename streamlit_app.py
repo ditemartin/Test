@@ -26,7 +26,6 @@ start_date = pd.Timestamp.today() - pd.Timedelta(days=90)
 end_date = pd.Timestamp.today()
 
 # UI for filtering by product URL and date range (on one row)
-st.header("Filter Options")
 selected_url = st.selectbox("", options=product_urls, label_visibility="collapsed")
 col1, col2 = st.columns(2)
 with col1:
@@ -47,7 +46,7 @@ fig.update_yaxes(tickprefix="", tickformat=",.0f Kč")
 st.plotly_chart(fig)
 
 # Calculate price change percentages for each store (first to last value) and display below the chart
-st.subheader("Celková cenová změna")
+st.subheader("Celková změna ceny")
 for store in stores:
     store_data = filtered_data[filtered_data['Store'] == store]
     if len(store_data) > 1:
