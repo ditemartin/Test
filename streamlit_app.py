@@ -3,13 +3,22 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
-# Simulate product prices for 5 different stores over a weekly period
+# Simulate dynamic price fluctuations using a random walk for 5 stores over a week
 dates = pd.date_range(start='2023-09-01', periods=7, freq='D')
 stores = ['Store A', 'Store B', 'Store C', 'Store D', 'Store E']
 
-# Simulate price fluctuations for each store between 100 and 250
-np.random.seed(42)
-price_data = {store: np.random.randint(100, 250, size=len(dates)) for store in stores}
+# Function to generate random walk for price data between 100 and 250
+def generate_price_data(days, start_price=150, price_range=(100, 250)):
+    price_data = [start_price]
+    for _ in range(days - 1):
+        change = np.random.randint(-10, 10)  # daily price change
+        new_price = price_data[-1] + change
+        new_price = max(min(new_price, price_range[1]), price_range[0])  # constrain within price range
+        price_data.append(new_price)
+    return price_data
+
+# Generate dynamic prices for each store
+price_data = {store: generate_price_data(len(dates)) for store in stores}
 df = pd.DataFrame(price_data, index=dates).reset_index()
 df = df.melt(id_vars=['index'], var_name='Store', value_name='Price')
 
