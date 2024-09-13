@@ -3,64 +3,51 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
-# Generating random dates for the X-axis (weekly)
-dates = pd.date_range(start=pd.Timestamp.today() - pd.Timedelta(days=90), periods=7, freq='D')
+# Generate random prices for 5 stores over the last 90 days
+dates = pd.date_range(end=pd.Timestamp.today(), periods=7, freq='D')
 stores = ['Store A', 'Store B', 'Store C', 'Store D', 'Store E']
-
-# Function to generate random walk for price data between 100 and 250
-def generate_price_data(days, start_price=150, price_range=(100, 250)):
-    price_data = [start_price]
-    for _ in range(days - 1):
-        change = np.random.randint(-10, 10)  # daily price change
-        new_price = price_data[-1] + change
-        new_price = max(min(new_price, price_range[1]), price_range[0])  # constrain within price range
-        price_data.append(new_price)
-    return price_data
-
-# Generate dynamic prices for each store
-price_data = {store: generate_price_data(len(dates)) for store in stores}
-df = pd.DataFrame(price_data, index=dates).reset_index()
-df = df.melt(id_vars=['index'], var_name='Store', value_name='Price')
-
-# Rename the columns
-df.rename(columns={'index': 'Date'}, inplace=True)
-
-# Simulate product URLs for filtering
 product_urls = [f"https://example.com/product-{i}" for i in range(1, 6)]
+
+# Function to generate random price data with small fluctuations
+def generate_price_data(size, start_price=150, price_range=(100, 250)):
+    prices = [start_price]
+    for _ in range(size - 1):
+        prices.append(max(min(prices[-1] + np.random.randint(-10, 10), price_range[1]), price_range[0]))
+    return prices
+
+# Create DataFrame for prices across all stores
+df = pd.DataFrame({store: generate_price_data(len(dates)) for store in stores}, index=dates)
+df = df.reset_index().melt(id_vars=['index'], var_name='Store', value_name='Price')
+df.rename(columns={'index': 'Date'}, inplace=True)
 df['Product URL'] = np.random.choice(product_urls, size=len(df))
 
-# Default date range (3 months prior to today up to today) using pandas
-default_start_date = pd.Timestamp.today() - pd.Timedelta(days=90)
-default_end_date = pd.Timestamp.today()
+# Default date range (last 3 months)
+start_date = pd.Timestamp.today() - pd.Timedelta(days=90)
+end_date = pd.Timestamp.today()
 
-# Main layout filters (instead of sidebar)
+# UI for filtering by product URL and date range
 st.header("Filter Options")
 selected_url = st.selectbox("Select Product URL", options=product_urls)
-col1, col2 = st.columns(2)
-with col1:
-    start_date = st.date_input("Start Date", value=default_start_date)
-with col2:
-    end_date = st.date_input("End Date", value=default_end_date)
+start_date_input = st.date_input("Start Date", value=start_date)
+end_date_input = st.date_input("End Date", value=end_date)
 
-# Filter data by date and product URL
-filtered_data = df[(df['Date'] >= pd.to_datetime(start_date)) & 
-                   (df['Date'] <= pd.to_datetime(end_date)) & 
+# Filter the DataFrame based on selections
+filtered_data = df[(df['Date'] >= pd.to_datetime(start_date_input)) & 
+                   (df['Date'] <= pd.to_datetime(end_date_input)) & 
                    (df['Product URL'] == selected_url)]
 
-# Calculate percentage change in price for each store within the filtered data
-filtered_data['Percent Change'] = filtered_data.groupby('Store')['Price'].pct_change() * 100
+# Calculate price change percentages for each store (first to last value)
+st.subheader("Price Change Percentages from Start to End")
+for store in stores:
+    store_data = filtered_data[filtered_data['Store'] == store]
+    if len(store_data) > 1:
+        percent_change = ((store_data['Price'].iloc[-1] - store_data['Price'].iloc[0]) / store_data['Price'].iloc[0]) * 100
+        color = 'green' if percent_change < 0 else 'red'
+        st.markdown(f"**{store}:** <span style='color:{color}'>{percent_change:.2f}%</span>", unsafe_allow_html=True)
 
-# Plot the smooth lines using line_shape='spline' for smooth curves
+# Plot price trends
 fig = px.line(filtered_data, x='Date', y='Price', color='Store', line_shape='spline',
-              title='Vývoj cen u produktu XXX',
-              labels={'Price': 'Cena (Kč)', 'Date': 'Date', 'Store': 'Store'})
-
-# Update x-axis frequency to weekly and y-axis format to "Kč"
-fig.update_xaxes(dtick="M1", tickformat="%d-%b")  # Show monthly, you can modify for weekly
+              title='Vývoj cen u produktu XXX')
+fig.update_xaxes(dtick="M7", tickformat="%d-%m-%Y")  # Weekly ticks in dd-mm-yyyy format
 fig.update_yaxes(tickprefix="", tickformat=",.0f Kč")
-
-# Display the plot
 st.plotly_chart(fig)
-
-# Show the filtered data as a table (with price percentage change)
-st.write("Filtered Data with Price Change", filtered_data[['Date', 'Store', 'Price', 'Percent Change']])
