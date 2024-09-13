@@ -4,7 +4,7 @@ import numpy as np
 import plotly.express as px
 
 # Generating random dates for the X-axis (weekly)
-dates = pd.date_range(start='2023-09-01', periods=7, freq='D')
+dates = pd.date_range(start=pd.Timestamp.today() - pd.Timedelta(days=90), periods=7, freq='D')
 stores = ['Store A', 'Store B', 'Store C', 'Store D', 'Store E']
 
 # Function to generate random walk for price data between 100 and 250
@@ -29,19 +29,26 @@ df.rename(columns={'index': 'Date'}, inplace=True)
 product_urls = [f"https://example.com/product-{i}" for i in range(1, 6)]
 df['Product URL'] = np.random.choice(product_urls, size=len(df))
 
+# Default date range (3 months prior to today up to today) using pandas
+default_start_date = pd.Timestamp.today() - pd.Timedelta(days=90)
+default_end_date = pd.Timestamp.today()
+
 # Main layout filters (instead of sidebar)
 st.header("Filter Options")
 selected_url = st.selectbox("Select Product URL", options=product_urls)
 col1, col2 = st.columns(2)
 with col1:
-    start_date = st.date_input("Start Date", value=pd.to_datetime('2023-09-01'))
+    start_date = st.date_input("Start Date", value=default_start_date)
 with col2:
-    end_date = st.date_input("End Date", value=pd.to_datetime('2023-09-07'))
+    end_date = st.date_input("End Date", value=default_end_date)
 
 # Filter data by date and product URL
 filtered_data = df[(df['Date'] >= pd.to_datetime(start_date)) & 
                    (df['Date'] <= pd.to_datetime(end_date)) & 
                    (df['Product URL'] == selected_url)]
+
+# Calculate percentage change in price for each store within the filtered data
+filtered_data['Percent Change'] = filtered_data.groupby('Store')['Price'].pct_change() * 100
 
 # Plot the smooth lines using line_shape='spline' for smooth curves
 fig = px.line(filtered_data, x='Date', y='Price', color='Store', line_shape='spline',
@@ -55,19 +62,5 @@ fig.update_yaxes(tickprefix="", tickformat=",.0f Kč")
 # Display the plot
 st.plotly_chart(fig)
 
-# Calculate percentage change in price for each store
-st.subheader("Price Change Percentages")
-price_change = []
-for store in stores:
-    store_data = filtered_data[filtered_data['Store'] == store].copy()
-    store_data['Percent Change'] = store_data['Price'].pct_change() * 100  # Calculate percentage change
-    store_data.dropna(inplace=True)  # Drop first row because there's no previous value to compare
-
-    # Display the percentage changes
-    for _, row in store_data.iterrows():
-        color = 'green' if row['Percent Change'] < 0 else 'red'
-        st.markdown(f"**{row['Store']} on {row['Date'].date()}:** "
-                    f"<span style='color:{color}'>{row['Percent Change']:.2f}%</span>", unsafe_allow_html=True)
-
-# Show the filtered data as a table (optional)
-st.write("Filtered Data", filtered_data)
+# Show the filtered data as a table (with price percentage change)
+st.write("Filtered Data with Price Change", filtered_data[['Date', 'Store', 'Price', 'Percent Change']])
