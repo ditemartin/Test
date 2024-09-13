@@ -1,52 +1,43 @@
 import streamlit as st
+import pandas as pd
 import numpy as np
-import plotly.graph_objects as go
+import plotly.express as px
 
-# Generating 500 normally distributed values between 0 and 200
+# Simulate product prices for 5 different stores over a weekly period
+dates = pd.date_range(start='2023-09-01', periods=7, freq='D')
+stores = ['Store A', 'Store B', 'Store C', 'Store D', 'Store E']
+
+# Simulate price fluctuations for each store between 100 and 250
 np.random.seed(42)
-values = np.random.normal(loc=100, scale=20, size=500)  # mean=100, std=20
+price_data = {store: np.random.randint(100, 250, size=len(dates)) for store in stores}
+df = pd.DataFrame(price_data, index=dates).reset_index()
+df = df.melt(id_vars=['index'], var_name='Store', value_name='Price')
 
-# Clip the data to ensure the lowest value is 55 and highest is 145
-values = np.clip(values, 55, 145)
+# Rename the columns
+df.rename(columns={'index': 'Date'}, inplace=True)
 
-# Defining 9 bins between 55 and 145
-bins = np.linspace(55, 145, 10)
+# Simulate product URLs for filtering
+product_urls = [f"https://example.com/product-{i}" for i in range(1, 6)]
+df['Product URL'] = np.random.choice(product_urls, size=len(df))
 
-# Creating histogram data
-hist_data = np.histogram(values, bins=bins)
+# Sidebar filters
+st.sidebar.header("Filter Options")
+selected_url = st.sidebar.selectbox("Select Product URL", options=product_urls)
+start_date = st.sidebar.date_input("Start Date", value=pd.to_datetime('2023-09-01'))
+end_date = st.sidebar.date_input("End Date", value=pd.to_datetime('2023-09-07'))
 
-# Adding hover information with number of items and range in parentheses on the second line, rounding values
-hover_text = []
-for i in range(len(hist_data[1]) - 1):
-    if i == 0:
-        hover_text.append(f'Počet: {hist_data[0][i]}<br>(<65)')  # First bin hover text
-    elif i == len(hist_data[1]) - 2:
-        hover_text.append(f'Počet: {hist_data[0][i]}<br>(>135)')  # Last bin hover text
-    else:
-        hover_text.append(f'Počet: {hist_data[0][i]}<br>({round(hist_data[1][i])} - {round(hist_data[1][i+1])})')
+# Filter data by date and product URL
+filtered_data = df[(df['Date'] >= pd.to_datetime(start_date)) & 
+                   (df['Date'] <= pd.to_datetime(end_date)) & 
+                   (df['Product URL'] == selected_url)]
 
-# Custom colors for the bins, ensuring the second yellow column turns red
-color_map = ['#B9DC6B' if hist_data[1][i] < 95 else '#F96C6C' if hist_data[1][i] >= 105 else '#FFE897' 
-             for i in range(len(hist_data[1]) - 1)]
+# Plot the price trends
+fig = px.line(filtered_data, x='Date', y='Price', color='Store',
+              title=f'Price Trends for {selected_url}',
+              labels={'Price': 'Price (in currency)', 'Date': 'Date', 'Store': 'Store'})
 
-# Add bars for all bins with hovertext showing count and rounded range
-fig = go.Figure(go.Bar(
-    x=[f"<65" if i == 0 else f">145" if i == len(bins)-2 else f"{int(round(hist_data[1][i]))} - {int(round(hist_data[1][i+1]))}" 
-       for i in range(len(hist_data[1]) - 1)],
-    y=hist_data[0],
-    marker_color=color_map,  # Custom colors applied here
-    hovertext=hover_text,
-    hoverinfo="text",
-))
-
-# Update layout with custom title and axis labels, and remove the legend
-fig.update_layout(
-    title='Cenové porovnání s obchodem XXX',
-    xaxis_title='Cenový index (nižší hodnoty znamenají, že jste levnější)',
-    yaxis_title='Počet produktů',
-    bargap=0.1,
-    showlegend=False,  # Remove the legend
-)
-
-# Display the plot in Streamlit
+# Display the plot
 st.plotly_chart(fig)
+
+# Show the filtered data as a table (optional)
+st.write("Filtered Data", filtered_data)
