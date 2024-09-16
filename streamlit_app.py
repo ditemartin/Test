@@ -10,7 +10,7 @@ st.markdown(
     """
     <style>
     .main {
-        max-width: 1400px; /* Set the desired width */
+        max-width: 1000px; /* Set the desired width */
         margin: 0 auto;  /* Center align the content */
     }
     </style>
