@@ -3,6 +3,19 @@ import streamlit as st
 # Set up the page title and layout
 st.set_page_config(page_title="Průvodce nástrojem pro ověřování shod", layout="wide")
 
+# Adjust the page width using custom CSS
+st.markdown(
+    """
+    <style>
+    .main {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Page Header
 st.header("Průvodce nástrojem pro ověřování shod")
 
@@ -33,9 +46,12 @@ Je nám jasné, že nikdo nedosáhne 100% přesnosti. Chceme ale vytvořit podm�
 To nám umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Dlouhodobě by kontroloři měli dosahovat cca 98% přesnosti při vyhodnocování.
 """)
 
+# Add a blue button
+if st.button("Přejít do nástroje na kontrolu produktových párů"):
+    st.write("Tady můžete vložit odkaz nebo funkci pro přechod do nástroje.")
+
 # Pravidla Section
 st.header("Jak vyhodnotit nejednoznačné případy?")
-
 st.write("""
 Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
 """)
