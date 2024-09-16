@@ -57,7 +57,9 @@ Je nám jasné, že nikdo nedosáhne 100% přesnosti. Chceme ale vytvořit podm�
 To nám umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Dlouhodobě by kontroloři měli dosahovat cca 98% přesnosti při vyhodnocování.
 
 """)
-
+st.write("""
+ 
+""")
 # Add a slightly blue button using custom styling
 button_clicked = st.markdown(
     """
