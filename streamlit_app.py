@@ -1,42 +1,37 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 
-# Set page configuration to use a wide layout
-st.set_page_config(layout="wide")
+# Set up the page title and layout
+st.set_page_config(page_title="Match Verification Tool User Guide", layout="wide")
 
-# Inject custom CSS to control the width of the main content
-st.markdown(
-    """
-    <style>
-    .main {
-        max-width: 1000px; /* Set the desired width */
-        margin: 0 auto;  /* Center align the content */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+# Collapsible sidebar
+with st.sidebar:
+    st.markdown("# Menu")
+    tab = st.selectbox(
+        "Navigate to:",
+        ["Overview", "Rules"]
+    )
 
-# Generate sample data with more columns
-data = {
-    'Product': ['Product A', 'Product B', 'Product C', 'Product D'],
-    'Description': ['A long description that makes the column too wide for the monitor.', 
-                    'Another lengthy description that affects layout.', 
-                    'Short description.', 
-                    'Moderate length description.'],
-    'Price': [100, 200, 300, 400],
-    'Stock': [50, 60, 70, 80],
-    'Category': ['Electronics', 'Clothing', 'Accessories', 'Home'],
-    'Supplier': ['Supplier X', 'Supplier Y', 'Supplier Z', 'Supplier W'],
-    'Location': ['Warehouse A', 'Warehouse B', 'Warehouse C', 'Warehouse D'],
-    'Rating': [4.5, 4.0, 3.5, 4.2],
-    'Discount': ['10%', '15%', '20%', '5%'],
-    'Shipping Cost': [15, 20, 25, 30]
-}
+# Content based on the selected tab
+if tab == "Overview":
+    st.header("Match Verification Tool - Overview")
+    st.write("""
+    Welcome to the Match Verification Tool! This tool allows you to verify if the product matches between two sources are correct. The interface displays product information side by side to facilitate easy comparison.
+    
+    - Use the **Correct** button to confirm a match.
+    - Use the **Incorrect** button if the products do not match.
+    - Use the **Problematic** button if the products need further investigation.
+    - The **Undo** button allows you to revert the last action.
+    
+    Please navigate through this guide using the sidebar to learn more about the different aspects of the tool.
+    """)
 
-# Create a DataFrame with the expanded data
-df = pd.DataFrame(data)
-
-# Display the table with the wider layout
-st.dataframe(df)
+elif tab == "Rules":
+    st.header("Match Verification Tool - Rules")
+    st.write("""
+    This section covers the rules for verifying product matches in the tool.
+    
+    ### Rules:
+    - **Correct**: If the products match exactly (all attributes such as Name, Price, EAN, Size, and Color match), select the green checkmark.
+    - **Incorrect**: If there is a discrepancy in any attribute (e.g., Name or Price), select the red cross.
+    - **Problematic**: If the products require further investigation (e.g., insufficient information), select the yellow button.
+    - **Undo**: To
