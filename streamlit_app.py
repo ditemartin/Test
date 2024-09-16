@@ -51,8 +51,6 @@ st.subheader("Přesnost")
 st.write("""
 Je nám jasné, že nikdo nedosáhne 100% přesnosti, rádi bychom se tomu ale co nejvíce přiblížili. Abychom zajistili co nejvyšší kvalitu služby, některé produktové páry budou vyhodnocovány několikrát. 
 To nám umožní průběžně vyhodnocovat přesnost kontroly. Dlouhodobě bychom chtěli dosahovat přesnosti nad 98 %.
-<br>
-<br>
 """)
 
 st.markdown("<br>", unsafe_allow_html=True)
