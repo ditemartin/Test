@@ -76,7 +76,7 @@ def create_rule_section(rule_name, description, image_path):
         st.image(image_path, caption=f"{rule_name} - Obrázek")
 
 # Creating the rule sections with the correct image paths
-create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type.jpg")
+create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type.png")
 create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "images/Color.jpg")
 create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "images/Size.jpg")
 create_rule_section("Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "https://via.placeholder.com/300")
