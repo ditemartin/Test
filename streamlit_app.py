@@ -33,7 +33,7 @@ table {
 }
 
 table th:nth-child(2), table td:nth-child(2) {
-    max-width: 150px;
+    max-width: 400px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
