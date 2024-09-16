@@ -74,7 +74,7 @@ Tato sekce obsahuje základní pravidla, která by měla být dodržována při 
 """)
 
 # Helper function to create a rule section with a single image
-def create_rule_section(rule_name, description, image_path, width=800):
+def create_rule_section(rule_name, description, image_path, width=1200):
     st.markdown(f"### {rule_name}")
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
