@@ -30,16 +30,17 @@ def create_rule_section(rule_name, description):
 
 # Show content based on active tab
 if st.session_state['active_tab'] == 'Přehled':
-    st.header("Průvodce nástrojem pro ověřování shod - Přehled")
+    st.header("Přehled")
     st.write("""
-    Vítejte v nástroji pro ověřování shod! Tento nástroj vám umožňuje ověřit, zda jsou shody produktů mezi dvěma zdroji správné. Rozhraní zobrazuje informace o produktech vedle sebe pro snadné porovnání.
+    Vítejte! Tento nástroj vám umožňuje ověřit, zda jsou produkty správně napárované.
 
-    - Použijte tlačítko **Správně** k potvrzení shody.
-    - Použijte tlačítko **Nesprávně**, pokud produkty nesouhlasí.
-    - Použijte tlačítko **Problematické**, pokud produkty potřebují další prošetření.
-    - Tlačítko **Zpět** umožňuje vrátit poslední akci.
-
-    Použijte navigaci v postranním panelu pro pohyb v průvodci a dozvědět se více o jednotlivých aspektech nástroje.
+    Jak na to?
+    V některých případech to je velmi jendoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat ve větším detailu.
+    - Pokud si nejste jistí, použijte tlačitko **Přejít na web**, kde většinou můžete najít další detaily.
+    - Pokud si ani po bližším prozkoumání nejste jistí, zda jsou produkty totožné, použijte tlačítko **Problematické**
+    - Jestliže uděláte chybu, můžete se vrátit tlačítkem **Zpět**
+    - Proces kontroly a důležité faktory, na které je třeba se soustředit, se budou lišit dle typu kontrolovaného zboží. U Elektroniky bude třeba sledovat jiné parametry než u koberců.
+    - Při kontrole často mohou pomoci produktové kódy od dodavatelů
     """)
 
 elif st.session_state['active_tab'] == 'Pravidla':
