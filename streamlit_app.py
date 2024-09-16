@@ -67,8 +67,8 @@ elif st.session_state['active_tab'] == 'Pravidla':
     """)
 
     # Create rule sections with custom image URLs
-    create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-    create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často velmi dobrý ukazatel, pokud si nejste jistí, zda je produkt identický.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-    create_rule_section("Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom z obchodů se produkt bude prodávat v jiném množství (např židle vs. 4 židle).", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-    create_rule_section("Technické", "Identicky vypadající produkty stále mohou mít jiné parametry.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-    create_rule_section("Výrobce/původ", "Pravidlo pro shodu produktů podle výrobce nebo původu.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("1. Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("2. Velikost", "Produkty musí být stejně velké. Velikost je často velmi dobrý ukazatel, pokud si nejste jistí, zda je produkt identický.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("3. Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom z obchodů se produkt bude prodávat v jiném množství (např židle vs. 4 židle).", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("4. Technické", "Identicky vypadající produkty stále mohou mít jiné parametry.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("5. Výrobce/původ", "Pravidlo pro shodu produktů podle výrobce nebo původu.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
