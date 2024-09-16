@@ -80,8 +80,8 @@ def create_rule_section(rule_name, description, image_path):
         st.image(image_path, caption=f"{rule_name} - Obrázek", use_column_width=True)
 
 # Creating the rule sections with the updated image paths
-create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type2.jpg")
-create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "images/Color2.jpg")
-create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "images/Size2.jpg")
-create_rule_section("Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "images/Count2.jpg")
-create_rule_section("Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "images/Parameter2.jpg")
+create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "Images/Type2.jpg")
+create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "Images/Color2.jpg")
+create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "Images/Size2.jpg")
+create_rule_section("Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "Images/Count2.jpg")
+create_rule_section("Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "Images/Parameter2.jpg")
