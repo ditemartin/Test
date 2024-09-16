@@ -53,7 +53,6 @@ Je nám jasné, že nikdo nedosáhne 100% přesnosti, rádi bychom se tomu ale c
 To nám umožní průběžně vyhodnocovat přesnost kontroly. Dlouhodobě bychom chtěli dosahovat přesnosti nad 98 %.
 """)
 
-# Add space before the button
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown(
@@ -65,7 +64,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Add space after the button
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.header("Jak vyhodnotit nejednoznačné případy?")
@@ -86,3 +84,14 @@ create_rule_section(2, "Barva", "Produkty musí mít vždy stejnou barvu i vzor.
 create_rule_section(3, "Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "Images/Size2.jpg")
 create_rule_section(4, "Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "Images/Count2.jpg")
 create_rule_section(5, "Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "Images/Parameter2.jpg")
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+st.markdown(
+    """
+    <a href="https://www.example.com" target="_blank">
+        <div class="custom-button">Přejít do nástroje na kontrolu produktových párů</div>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
