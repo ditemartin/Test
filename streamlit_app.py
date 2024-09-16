@@ -1,11 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-
-
-# Your application code goes here
-st.title("Custom Width Streamlit App")
-
 # Sample DataFrame
 data = {
     'Product': ['Product A', 'Product B', 'Product C', 'Product D'],
