@@ -16,8 +16,8 @@ st.markdown(
         color: black;  /* Black text */
         font-size: 18px;  /* Slightly larger font size */
         padding: 10px 20px;
-        border: 2px solid #007BFF;  /* Border to resemble the original button shape */
-        border-radius: 12px;
+        border: 2px solid #a09BFF;  /* Border to resemble the original button shape */
+        border-radius: 18px;
         text-align: center;
         display: inline-block;
         cursor: pointer;
