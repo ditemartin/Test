@@ -11,6 +11,18 @@ st.markdown(
         max-width: 1400px;
         margin: 0 auto;
     }
+    .button {
+        display: inline-block;
+        padding: 15px 25px;
+        font-size: 20px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        color: white;
+        background-color: #007BFF;
+        border-radius: 5px;
+        border: none;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -46,9 +58,13 @@ Je nám jasné, že nikdo nedosáhne 100% přesnosti. Chceme ale vytvořit podm�
 To nám umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Dlouhodobě by kontroloři měli dosahovat cca 98% přesnosti při vyhodnocování.
 """)
 
-# Add a blue button
-if st.button("Přejít do nástroje na kontrolu produktových párů"):
-    st.write("Tady můžete vložit odkaz nebo funkci pro přechod do nástroje.")
+# Add a blue button using HTML and CSS for external link
+st.markdown(
+    """
+    <a href="https://www.example.com" target="_blank" class="button">Přejít do nástroje na kontrolu produktových párů</a>
+    """,
+    unsafe_allow_html=True
+)
 
 # Pravidla Section
 st.header("Jak vyhodnotit nejednoznačné případy?")
