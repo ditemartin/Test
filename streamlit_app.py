@@ -50,13 +50,10 @@ st.subheader("Přesnost")
 st.write("""
 Je nám jasné, že nikdo nedosáhne 100% přesnosti. Chceme ale vytvořit podmínky, které vám pomohou se k tomuto číslu co nejvíce přiblížit. Abychom zajistili co nejvyšší kvalitu služby, některé produktové páry budou vyhodnocovány několikrát. 
 To nám umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Dlouhodobě by kontroloři měli dosahovat cca 98% přesnosti při vyhodnocování.
+""")
 
-""")
-st.write("""
- 
-""")
 # Add a slightly blue button using custom styling
-button_clicked = st.markdown(
+st.markdown(
     """
     <a href="https://www.example.com" target="_blank">
         <div class="custom-button">Přejít do nástroje na kontrolu produktových párů</div>
@@ -66,28 +63,21 @@ button_clicked = st.markdown(
 )
 
 # Pravidla Section
-st.write("""
- 
-""")
 st.header("Jak vyhodnotit nejednoznačné případy?")
 st.write("""
 Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
 """)
 
-# Helper function to create a rule section
-def create_rule_section(rule_name, description, image_url1, image_url2):
+# Helper function to create a rule section with a single image
+def create_rule_section(rule_name, description, image_path):
     st.markdown(f"### {rule_name}")
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
-        col1, col2 = st.columns(2)
-        with col1:
-            st.image(image_url1, caption=f"{rule_name} - Obrázek 1")
-        with col2:
-            st.image(image_url2, caption=f"{rule_name} - Obrázek 2")
+        st.image(image_path, caption=f"{rule_name} - Obrázek")
 
-# Creating the rule sections
-create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-create_rule_section("Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-create_rule_section("Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+# Creating the rule sections with the correct image paths
+create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type.jpg")
+create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "images/Color.jpg")
+create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "images/Size.jpg")
+create_rule_section("Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "https://via.placeholder.com/300")
+create_rule_section("Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "images/Parameter.jpg")
