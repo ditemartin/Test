@@ -37,7 +37,8 @@ if st.session_state['active_tab'] == 'Přehled':
     
     st.subheader("Jak na to?")
     
-    st.write("""V některých případech to je velmi jendoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat ve větším detailu.
+    st.write("""
+    V některých případech to je velmi jendoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat ve větším detailu.
     - Pokud si nejste jistí, použijte tlačitko **Přejít na web**, kde většinou můžete najít další detaily.
     - Pokud si ani po bližším prozkoumání nejste jistí, zda jsou produkty totožné, použijte tlačítko **Problematické**
     - Jestliže uděláte chybu, můžete se vrátit tlačítkem **Zpět**
