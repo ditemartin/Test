@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Set up the page title and layout
-st.set_page_config(page_title="Průvodce při ověřování produktových párů", layout="wide")
+st.set_page_config(page_title="Průvodce pro ověřování produktových párů", layout="wide")
 
 # Adjust the page width using custom CSS
 st.markdown(
@@ -36,7 +36,7 @@ st.markdown(
 )
 
 # Page Header
-st.header("Průvodce nástrojem pro ověřování shod")
+st.header("Průvodce pro ověřování produktových párů")
 
 # Přehled Section
 st.subheader("Jak na to?")
