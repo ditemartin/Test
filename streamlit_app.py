@@ -44,10 +44,14 @@ if st.session_state['active_tab'] == 'Přehled':
 
 elif st.session_state['active_tab'] == 'Pravidla':
     st.header("Průvodce nástrojem pro ověřování shod - Pravidla")
-    
+    st.subheader("Základní pravidla pro ověřování shod")
+    st.write("""
+    Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
+    """)
+
     # Create rule sections
-    create_rule_section("Barva", "Pravidlo pro shodu produktů podle barvy.")
-    create_rule_section("Velikost", "Pravidlo pro shodu produktů podle velikosti.")
-    create_rule_section("Počet v balení", "Pravidlo pro shodu produktů podle počtu v balení.")
-    create_rule_section("Parametry", "Pravidlo pro shodu produktů podle konkrétních parametrů.")
+    create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.")
+    create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často velmi dobrý ukazatel, pokud si nejste jistí, zda je produkt identický.")
+    create_rule_section("Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom z obchodů se produkt bude prodávat v jiném množství (např židle vs. 4 židle).")
+    create_rule_section("Parametry", "Identicky vypadající produkty stále mohou mít jiné parametry.")
     create_rule_section("Výrobce/původ", "Pravidlo pro shodu produktů podle výrobce nebo původu.")
