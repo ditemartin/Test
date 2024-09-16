@@ -47,7 +47,7 @@ V některých případech to je velmi jednoduché a shoda/rozdíl jsou jasné na
 - Jestliže uděláte chybu, můžete se vrátit tlačítkem **Zpět**.
 - Proces kontroly a důležité faktory se liší podle typu kontrolovaného zboží. U elektroniky sledujte jiné parametry než u koberců.
 - Při kontrole často mohou pomoci produktové kódy od dodavatelů.
- 
+
 Odměna je 150 Kč za 1.000 zkontrolovaných produktů.
 """)
 
@@ -61,4 +61,32 @@ To nám umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. 
 button_clicked = st.markdown(
     """
     <a href="https://www.example.com" target="_blank">
-        <div class="custom-button">Přejít do nástroje na kontrolu
+        <div class="custom-button">Přejít do nástroje na kontrolu produktových párů</div>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
+
+# Pravidla Section
+st.header("Jak vyhodnotit nejednoznačné případy?")
+st.write("""
+Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
+""")
+
+# Helper function to create a rule section
+def create_rule_section(rule_name, description, image_url1, image_url2):
+    st.markdown(f"### {rule_name}")
+    st.write(description)
+    with st.expander(f"Příklad: {rule_name}"):
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image(image_url1, caption=f"{rule_name} - Obrázek 1")
+        with col2:
+            st.image(image_url2, caption=f"{rule_name} - Obrázek 2")
+
+# Creating the rule sections
+create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+create_rule_section("Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+create_rule_section("Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
