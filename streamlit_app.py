@@ -17,8 +17,8 @@ with st.sidebar:
 
 # Helper function to create a collapsible rule section with editable image URLs
 def create_rule_section(rule_name, description, image_url1, image_url2):
-    # Use a slightly smaller heading using st.markdown with '###'
-    st.markdown(f"### {rule_name}")
+    # Use a slightly smaller heading using st.markdown with '####'
+    st.markdown(f"#### {rule_name}")
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
         # Images with provided URLs
