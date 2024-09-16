@@ -17,7 +17,7 @@ st.markdown(
 )
 
 # Page Header
-st.header("Průvodce nástrojem pro ověřování shod")
+st.header("Průvodce nástrojem pro ověřování produktových párů")
 
 # Přehled Section
 st.subheader("Přehled")
