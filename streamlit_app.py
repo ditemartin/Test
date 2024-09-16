@@ -46,6 +46,13 @@ if st.session_state['active_tab'] == 'Přehled':
     - Při kontrole často mohou pomoci produktové kódy od dodavatelů
     """)
 
+    st.subheader("Přesnost")
+    
+    st.write("""
+    Je nám jasné, že nikdo nedosáhne 100 % přesnosti, chceme ale vytvořit pomdínky, které vám pomohou se k tomuto číslu co nejvíce přiblížit. Abychom zajistili co nejvyšší možnou kvalitu služby pro naše zákazníky, některé produktové páry budou vyhodnocovány několikrát. 
+    To nám navíc umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Pokud výsledky nebudou odpovídat očekávání, můžeme se pak zaměřit na konkrétní problémy.
+    """)
+
 elif st.session_state['active_tab'] == 'Pravidla':
     st.header("Průvodce nástrojem pro ověřování shod - Pravidla")
     st.subheader("Základní pravidla pro ověřování shod")
