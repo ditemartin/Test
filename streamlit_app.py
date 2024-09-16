@@ -60,8 +60,7 @@ if st.session_state['active_tab'] == 'Přehled':
     """)
 
 elif st.session_state['active_tab'] == 'Pravidla':
-    st.header("Průvodce nástrojem pro ověřování shod - Pravidla")
-    st.subheader("Základní pravidla pro ověřování shod")
+    st.header("Jak vyhodnotit nejednoznačné případy?")
     st.write("""
     Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
     """)
