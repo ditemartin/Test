@@ -14,7 +14,7 @@ with st.sidebar:
 # Content based on the selected tab
 if tab == "Overview":
     st.header("Match Verification Tool - Overview")
-    st.write("""
+    st.write("
     Welcome to the Match Verification Tool! This tool allows you to verify if the product matches between two sources are correct. The interface displays product information side by side to facilitate easy comparison.
     
     - Use the **Correct** button to confirm a match.
@@ -23,7 +23,7 @@ if tab == "Overview":
     - The **Undo** button allows you to revert the last action.
     
     Please navigate through this guide using the sidebar to learn more about the different aspects of the tool.
-    """)
+    ")
 
 elif tab == "Rules":
     st.header("Match Verification Tool - Rules")
