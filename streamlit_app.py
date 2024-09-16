@@ -1,12 +1,16 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+
+# Set page configuration to use a wide layout
+st.set_page_config(layout="wide")
 
 # Inject custom CSS to control the width of the main content
 st.markdown(
     """
     <style>
     .main {
-        max-width: 2000px; /* Adjust this value to set your desired width */
+        max-width: 1400px; /* Set the desired width */
         margin: 0 auto;  /* Center align the content */
     }
     </style>
@@ -14,16 +18,25 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Sample DataFrame
+# Generate sample data with more columns
 data = {
     'Product': ['Product A', 'Product B', 'Product C', 'Product D'],
-    'Description': ['A long description that makes the column too wide for thecription that makes the column too wide for the monitor.', 
+    'Description': ['A long description that makes the column too wide for the monitor.', 
                     'Another lengthy description that affects layout.', 
                     'Short description.', 
                     'Moderate length description.'],
-    'Price': [100, 200, 300, 400]
+    'Price': [100, 200, 300, 400],
+    'Stock': [50, 60, 70, 80],
+    'Category': ['Electronics', 'Clothing', 'Accessories', 'Home'],
+    'Supplier': ['Supplier X', 'Supplier Y', 'Supplier Z', 'Supplier W'],
+    'Location': ['Warehouse A', 'Warehouse B', 'Warehouse C', 'Warehouse D'],
+    'Rating': [4.5, 4.0, 3.5, 4.2],
+    'Discount': ['10%', '15%', '20%', '5%'],
+    'Shipping Cost': [15, 20, 25, 30]
 }
+
+# Create a DataFrame with the expanded data
 df = pd.DataFrame(data)
 
-# Display the table without limiting the column width
+# Display the table with the wider layout
 st.dataframe(df)
