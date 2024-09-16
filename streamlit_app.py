@@ -1,7 +1,24 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(layout="wide")
+
+# Inject custom CSS to control the width of the main content
+st.markdown(
+    """
+    <style>
+    .main {
+        max-width: 1200px; /* Adjust this value to set your desired width */
+        margin: 0 auto;  /* Center align the content */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Your application code goes here
+st.title("Custom Width Streamlit App")
+st.write(
+
 
 # Sample DataFrame
 data = {
@@ -32,4 +49,4 @@ table th:nth-child(2), table td:nth-child(2) {
 
 # Display the table with custom CSS
 st.markdown(css, unsafe_allow_html=True)
-st.markdown(df.to_html(escape=False, index=False), unsafe_allow_html=True)
+st.markdown(df.to_html(escape=False, index=False), unsafe_allow_html=True))
