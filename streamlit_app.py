@@ -1,18 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-# Inject custom CSS to control the width of the main content
-st.markdown(
-    """
-    <style>
-    .main {
-        max-width: 600px; /* Adjust this value to set your desired width */
-        margin: 0 auto;  /* Center align the content */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+
 
 # Your application code goes here
 st.title("Custom Width Streamlit App")
