@@ -15,18 +15,18 @@ with st.sidebar:
     if st.button("Pravidla"):
         st.session_state['active_tab'] = 'Pravidla'
 
-# Helper function to create a collapsible rule section
-def create_rule_section(rule_name, description):
+# Helper function to create a collapsible rule section with editable image URLs
+def create_rule_section(rule_name, description, image_url1, image_url2):
     # Name and description above the collapsible section
     st.subheader(rule_name)
     st.write(description)
-    with st.expander(f"Detail s příkladem: {rule_name}"):
-        # Placeholder for images - replace with actual image URLs or paths if available
+    with st.expander(f"Příklad: {rule_name}"):
+        # Images with provided URLs
         col1, col2 = st.columns(2)
         with col1:
-            st.image("https://via.placeholder.com/300", caption=f"{rule_name} - Obrázek 1")
+            st.image(image_url1, caption=f"{rule_name} - Obrázek 1")
         with col2:
-            st.image("https://via.placeholder.com/300", caption=f"{rule_name} - Obrázek 2")
+            st.image(image_url2, caption=f"{rule_name} - Obrázek 2")
 
 # Show content based on active tab
 if st.session_state['active_tab'] == 'Přehled':
@@ -46,7 +46,6 @@ if st.session_state['active_tab'] == 'Přehled':
     - Při kontrole často mohou pomoci produktové kódy od dodavatelů
     """)
 
-    
     st.subheader("Odměna")
     
     st.write("""
@@ -56,7 +55,7 @@ if st.session_state['active_tab'] == 'Přehled':
     st.subheader("Přesnost")
     
     st.write("""
-    Je nám jasné, že nikdo nedosáhne 100% přesnosti, chceme ale vytvořit pomdínky, které vám pomohou se k tomuto číslu co nejvíce přiblížit. Abychom zajistili co nejvyšší možnou kvalitu služby pro naše zákazníky, některé produktové páry budou vyhodnocovány několikrát. 
+    Je nám jasné, že nikdo nedosáhne 100% přesnosti, chceme ale vytvořit podmínky, které vám pomohou se k tomuto číslu co nejvíce přiblížit. Abychom zajistili co nejvyšší možnou kvalitu služby pro naše zákazníky, některé produktové páry budou vyhodnocovány několikrát. 
     To nám navíc umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Pokud výsledky nebudou odpovídat očekávání, můžeme se pak zaměřit na konkrétní problémy. Dlouhodobě by kontroloři měli dosahovat cca 98% přesnosti při vyhodnocování.
     """)
 
@@ -67,9 +66,9 @@ elif st.session_state['active_tab'] == 'Pravidla':
     Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
     """)
 
-    # Create rule sections
-    create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.")
-    create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často velmi dobrý ukazatel, pokud si nejste jistí, zda je produkt identický.")
-    create_rule_section("Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom z obchodů se produkt bude prodávat v jiném množství (např židle vs. 4 židle).")
-    create_rule_section("Parametry", "Identicky vypadající produkty stále mohou mít jiné parametry.")
-    create_rule_section("Výrobce/původ", "Pravidlo pro shodu produktů podle výrobce nebo původu.")
+    # Create rule sections with custom image URLs
+    create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často velmi dobrý ukazatel, pokud si nejste jistí, zda je produkt identický.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom z obchodů se produkt bude prodávat v jiném množství (např židle vs. 4 židle).", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("Technické", "Identicky vypadající produkty stále mohou mít jiné parametry.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("Výrobce/původ", "Pravidlo pro shodu produktů podle výrobce nebo původu.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
