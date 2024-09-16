@@ -25,6 +25,11 @@ st.markdown(
     .custom-button:hover {
         background-color: #b0d4ff;  /* Slightly darker blue on hover */
     }
+    /* Reduce padding and margins in the Streamlit container */
+    .stImage {
+        padding: 0;
+        margin: 0;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -69,11 +74,11 @@ Tato sekce obsahuje základní pravidla, která by měla být dodržována při 
 """)
 
 # Helper function to create a rule section with a single image
-def create_rule_section(rule_name, description, image_path, width=1000):
+def create_rule_section(rule_name, description, image_path):
     st.markdown(f"### {rule_name}")
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
-        st.image(image_path, caption=f"{rule_name} - Obrázek", width=width)
+        st.image(image_path, caption=f"{rule_name} - Obrázek", use_column_width=True)
 
 # Creating the rule sections with the correct image paths
 create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type.png")
