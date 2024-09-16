@@ -71,7 +71,7 @@ def create_rule_section(rule_name, description, image_path):
     st.markdown(f"### {rule_name}")
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
-        st.image(image_path, caption=f"{rule_name} - Obrázek", use_column_width=True)
+        st.image(image_path, caption=f"{rule_name} - Obrázek", width=1000)  # Adjust the width as needed
 
 create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type.png")
 create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "images/Color.jpg")
