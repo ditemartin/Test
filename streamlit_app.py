@@ -39,7 +39,7 @@ st.subheader("Jak na to?")
 st.write("""
 V některých případech to je velmi jednoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat detailně.
 - Pokud si nejste jistí, použijte tlačítko **Přejít na web**, kde najdete další detaily.
-- Pokud si ani po bližším prozkoumání nejste jistí, zda jsou produkty totožné, použijte tlačítko **Problematické**. Takto označený produkt se sice nezapočítá do počtu validací.
+- Pokud si ani po bližším prozkoumání nejste jistí, zda jsou produkty totožné, použijte tlačítko **Problematické**.
 - Jestliže uděláte chybu, můžete se vrátit tlačítkem **Zpět**.
 - Proces kontroly a důležité faktory se liší podle typu kontrolovaného zboží. U elektroniky sledujte jiné parametry než u koberců.
 - Při kontrole často mohou pomoci produktové kódy od dodavatelů.
@@ -53,6 +53,7 @@ Je nám jasné, že nikdo nedosáhne 100% přesnosti, rádi bychom se tomu ale c
 To nám umožní průběžně vyhodnocovat přesnost kontroly. Dlouhodobě bychom chtěli dosahovat přesnosti nad 98 %.
 """)
 
+# Add space before the button
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown(
@@ -64,6 +65,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Add space after the button
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.header("Jak vyhodnotit nejednoznačné případy?")
@@ -75,10 +77,11 @@ def create_rule_section(rule_name, description, image_path):
     st.markdown(f"### {rule_name}")
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
-        st.image(image_path, caption=f"{rule_name} - Obrázek", width=1000)  # Adjust the width as needed
+        st.image(image_path, caption=f"{rule_name} - Obrázek", use_column_width=True)
 
-create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type.png")
-create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "images/Color.jpg")
-create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "images/Size.jpg")
-create_rule_section("Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "https://via.placeholder.com/300")
-create_rule_section("Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "images/Parameter.jpg")
+# Creating the rule sections with the updated image paths
+create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type2.jpg")
+create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "images/Color2.jpg")
+create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "images/Size2.jpg")
+create_rule_section("Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "images/Count2.jpg")
+create_rule_section("Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "images/Parameter2.jpg")
