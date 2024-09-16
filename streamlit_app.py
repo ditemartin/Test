@@ -17,7 +17,7 @@ st.markdown(
 # Sample DataFrame
 data = {
     'Product': ['Product A', 'Product B', 'Product C', 'Product D'],
-    'Description': ['A long description that makes the column too wide for the monitor.', 
+    'Description': ['A long description that makes the column too wide for tn that makes the column too wide for tn that makes the column too wide for the monitor.', 
                     'Another lengthy description that affects layout.', 
                     'Short description.', 
                     'Moderate length description.'],
@@ -33,7 +33,7 @@ table {
 }
 
 table th:nth-child(2), table td:nth-child(2) {
-    max-width: 400px;
+    max-width: 800px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
