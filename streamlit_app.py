@@ -53,6 +53,8 @@ Je nám jasné, že nikdo nedosáhne 100% přesnosti, rádi bychom se tomu ale c
 To nám umožní průběžně vyhodnocovat přesnost kontroly. Dlouhodobě bychom chtěli dosahovat přesnosti nad 98 %.
 """)
 
+st.markdown("<br>", unsafe_allow_html=True)
+
 st.markdown(
     """
     <a href="https://www.example.com" target="_blank">
@@ -61,6 +63,8 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+st.markdown("<br>", unsafe_allow_html=True)
 
 st.header("Jak vyhodnotit nejednoznačné případy?")
 st.write("""
