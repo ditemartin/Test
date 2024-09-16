@@ -38,19 +38,26 @@ if st.session_state['active_tab'] == 'Přehled':
     st.subheader("Jak na to?")
     
     st.write("""
-    V některých případech to je velmi jendoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat ve větším detailu.
-    - Pokud si nejste jistí, použijte tlačitko **Přejít na web**, kde většinou můžete najít další detaily.
+    V některých případech to je velmi jednoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat detailně.
+    - Pokud si nejste jistí, použijte tlačitko **Přejít na web**, kde najdete další detaily.
     - Pokud si ani po bližším prozkoumání nejste jistí, zda jsou produkty totožné, použijte tlačítko **Problematické**
     - Jestliže uděláte chybu, můžete se vrátit tlačítkem **Zpět**
     - Proces kontroly a důležité faktory, na které je třeba se soustředit, se budou lišit dle typu kontrolovaného zboží. U Elektroniky bude třeba sledovat jiné parametry než u koberců.
     - Při kontrole často mohou pomoci produktové kódy od dodavatelů
     """)
 
+    
+    st.subheader("Odměna")
+    
+    st.write("""
+    Odměna je 150 Kč za 1.000 zkontrolovaných produktů.
+    """)
+
     st.subheader("Přesnost")
     
     st.write("""
     Je nám jasné, že nikdo nedosáhne 100 % přesnosti, chceme ale vytvořit pomdínky, které vám pomohou se k tomuto číslu co nejvíce přiblížit. Abychom zajistili co nejvyšší možnou kvalitu služby pro naše zákazníky, některé produktové páry budou vyhodnocovány několikrát. 
-    To nám navíc umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Pokud výsledky nebudou odpovídat očekávání, můžeme se pak zaměřit na konkrétní problémy.
+    To nám navíc umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Pokud výsledky nebudou odpovídat očekávání, můžeme se pak zaměřit na konkrétní problémy. Dlouhodobě by kontroloři měli dosahovat cca 98% přesnosti při vyhodnocování.
     """)
 
 elif st.session_state['active_tab'] == 'Pravidla':
