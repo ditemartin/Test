@@ -1,18 +1,27 @@
 import streamlit as st
 
 # Set up the page title and layout
-st.set_page_config(page_title="Match Verification Tool User Guide", layout="wide")
+st.set_page_config(page_title="Match Verification Tool User Guide", layout="wide", initial_sidebar_state="collapsed")
 
-# Collapsible sidebar
+# Sidebar with individual buttons for navigation
 with st.sidebar:
     st.markdown("# Menu")
-    tab = st.selectbox(
-        "Navigate to:",
-        ["Overview", "Rules"]
-    )
+    overview_button = st.button("Overview")
+    rules_button = st.button("Rules")
 
-# Content based on the selected tab
-if tab == "Overview":
+# Helper function to create a collapsible rule section
+def create_rule_section(rule_name, description):
+    with st.expander(f"{rule_name} (Click to expand)"):
+        st.write(description)
+        # Placeholder for images - replace with actual image URLs or paths if available
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image("https://via.placeholder.com/300", caption=f"{rule_name} - Image 1")
+        with col2:
+            st.image("https://via.placeholder.com/300", caption=f"{rule_name} - Image 2")
+
+# Show content based on button click
+if overview_button:
     st.header("Match Verification Tool - Overview")
     st.write("""
 Welcome to the Match Verification Tool! This tool allows you to verify if the product matches between two sources are correct. The interface displays product information side by side to facilitate easy comparison.
@@ -25,16 +34,13 @@ Welcome to the Match Verification Tool! This tool allows you to verify if the pr
 Please navigate through this guide using the sidebar to learn more about the different aspects of the tool.
     """)
 
-elif tab == "Rules":
+elif rules_button:
     st.header("Match Verification Tool - Rules")
-    st.write("""
-This section covers the rules for verifying product matches in the tool.
+    
+    # Create rule sections
+    create_rule_section("Barva", "Rule for matching products based on color.")
+    create_rule_section("Velikost", "Rule for matching products based on size.")
+    create_rule_section("Počet v balení", "Rule for matching products based on the quantity in the package.")
+    create_rule_section("Parametry", "Rule for matching products based on specific parameters.")
+    create_rule_section("Výrobce/původ", "Rule for matching products based on manufacturer/origin.")
 
-### Rules:
-- **Correct**: If the products match exactly (all attributes such as Name, Price, EAN, Size, and Color match), select the green checkmark.
-- **Incorrect**: If there is a discrepancy in any attribute (e.g., Name or Price), select the red cross.
-- **Problematic**: If the products require further investigation (e.g., insufficient information), select the yellow button.
-- **Undo**: To revert your last action, use the undo button.
-
-Make sure to verify each product's details thoroughly before making a decision.
-    """)
