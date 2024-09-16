@@ -73,15 +73,16 @@ st.write("""
 Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
 """)
 
-def create_rule_section(rule_name, description, image_path):
-    st.markdown(f"### {rule_name}")
+# Updated function to include numbering
+def create_rule_section(index, rule_name, description, image_path):
+    st.markdown(f"### {index}. {rule_name}")  # Add the index to the rule name
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
         st.image(image_path, caption=f"{rule_name} - Obrázek", use_column_width=True)
 
-# Creating the rule sections with the updated image paths
-create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "Images/Type2.jpg")
-create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "Images/Color2.jpg")
-create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "Images/Size2.jpg")
-create_rule_section("Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "Images/Count2.jpg")
-create_rule_section("Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "Images/Parameter2.jpg")
+# Creating the rule sections with the updated image paths and numbering
+create_rule_section(1, "Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "Images/Type2.jpg")
+create_rule_section(2, "Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "Images/Color2.jpg")
+create_rule_section(3, "Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "Images/Size2.jpg")
+create_rule_section(4, "Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "Images/Count2.jpg")
+create_rule_section(5, "Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "Images/Parameter2.jpg")
