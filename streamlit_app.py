@@ -39,7 +39,7 @@ st.subheader("Jak na to?")
 st.write("""
 V některých případech to je velmi jednoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat detailně.
 - Pokud si nejste jistí, použijte tlačítko **Přejít na web**, kde najdete další detaily.
-- Pokud si ani po bližším prozkoumání nejste jistí, zda jsou produkty totožné, použijte tlačítko **Problematické**.
+- Pokud si ani po bližším prozkoumání nejste jistí, zda jsou produkty totožné, použijte tlačítko **Problematické**. Takto označený produkt se sice nezapočítá do počtu validací.
 - Jestliže uděláte chybu, můžete se vrátit tlačítkem **Zpět**.
 - Proces kontroly a důležité faktory se liší podle typu kontrolovaného zboží. U elektroniky sledujte jiné parametry než u koberců.
 - Při kontrole často mohou pomoci produktové kódy od dodavatelů.
