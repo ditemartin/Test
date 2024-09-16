@@ -20,7 +20,7 @@ st.title("Custom Width Streamlit App")
 # Sample DataFrame
 data = {
     'Product': ['Product A', 'Product B', 'Product C', 'Product D'],
-    'Description': ['A long description that makes the column too wide for the monitor.', 
+    'Description': ['A long description that makes the column too widemn too widemn too widemn too wide for the monitor.', 
                     'Another lengthy description that affects layout.', 
                     'Short description.', 
                     'Moderate length description.'],
@@ -36,7 +36,7 @@ table {
 }
 
 table th:nth-child(2), table td:nth-child(2) {
-    max-width: 150px;
+    max-width: 600px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
