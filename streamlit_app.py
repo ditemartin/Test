@@ -55,6 +55,7 @@ st.subheader("Přesnost")
 st.write("""
 Je nám jasné, že nikdo nedosáhne 100% přesnosti. Chceme ale vytvořit podmínky, které vám pomohou se k tomuto číslu co nejvíce přiblížit. Abychom zajistili co nejvyšší kvalitu služby, některé produktové páry budou vyhodnocovány několikrát. 
 To nám umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Dlouhodobě by kontroloři měli dosahovat cca 98% přesnosti při vyhodnocování.
+
 """)
 
 # Add a slightly blue button using custom styling
@@ -68,6 +69,9 @@ button_clicked = st.markdown(
 )
 
 # Pravidla Section
+st.write("""
+ 
+""")
 st.header("Jak vyhodnotit nejednoznačné případy?")
 st.write("""
 Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
