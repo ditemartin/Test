@@ -67,7 +67,7 @@ elif st.session_state['active_tab'] == 'Pravidla':
     """)
 
     # Create rule sections with custom image URLs
-    create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde i jiný produkt.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
     create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
     create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často velmi dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
     create_rule_section("Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom z obchodů se produkt bude prodávat v jiném množství (např židle vs. 4 židle).", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
