@@ -17,8 +17,8 @@ with st.sidebar:
 
 # Helper function to create a collapsible rule section with editable image URLs
 def create_rule_section(rule_name, description, image_url1, image_url2):
-    # Name and description above the collapsible section
-    st.subheader(rule_name)
+    # Use a slightly smaller heading using st.markdown with '###'
+    st.markdown(f"### {rule_name}")
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
         # Images with provided URLs
@@ -71,4 +71,3 @@ elif st.session_state['active_tab'] == 'Pravidla':
     create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často velmi dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
     create_rule_section("Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom z obchodů se produkt bude prodávat v jiném množství (např židle vs. 4 židle).", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
     create_rule_section("Technické parametry", "Identicky vypadající produkty stále mohou mít jiné parametry. Výkon, materiál, výdrž baterie, apod.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-
