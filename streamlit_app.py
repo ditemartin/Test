@@ -1,14 +1,14 @@
 import streamlit as st
 
 # Set up the page title and layout
-st.set_page_config(page_title="Průvodce nástrojem pro ověřování shod", layout="wide")
+st.set_page_config(page_title="Průvodce při ověřování produktových párů", layout="wide")
 
 # Adjust the page width using custom CSS
 st.markdown(
     """
     <style>
     .main {
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
     }
     .custom-button {
@@ -34,11 +34,6 @@ st.markdown(
 st.header("Průvodce nástrojem pro ověřování shod")
 
 # Přehled Section
-st.subheader("Přehled")
-st.write("""
-Vítejte! Tento nástroj vám umožňuje ověřit, zda jsou produkty správně napárované.
-""")
-
 st.subheader("Jak na to?")
 st.write("""
 V některých případech to je velmi jednoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat detailně.
