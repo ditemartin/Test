@@ -1,24 +1,26 @@
 import streamlit as st
 
 # Set up the page title and layout
-st.set_page_config(page_title="Průvodce nástrojem pro ověřování shod", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Průvodce nástrojem pro ověřování shod", layout="wide", initial_sidebar_state="expanded")  # Set sidebar to expanded
 
 # Initialize session state for tab navigation
 if 'active_tab' not in st.session_state:
     st.session_state['active_tab'] = 'Přehled'
 
-# Sidebar with separate lines of text for navigation
+# Sidebar with non-collapsible menu and normal text lines for navigation
 with st.sidebar:
     st.markdown("# Menu")
-    if st.button("Přehled"):
+    
+    # Use markdown links to change the active tab
+    if st.markdown("[Přehled](#)"):
         st.session_state['active_tab'] = 'Přehled'
-    if st.button("Pravidla"):
+    if st.markdown("[Pravidla](#)"):
         st.session_state['active_tab'] = 'Pravidla'
 
 # Helper function to create a collapsible rule section with editable image URLs
 def create_rule_section(rule_name, description, image_url1, image_url2):
-    # Use a slightly smaller heading using st.markdown with '####'
-    st.markdown(f"#### {rule_name}")
+    # Use a slightly smaller font size using custom HTML/CSS
+    st.markdown(f"<h4 style='font-size:20px;'>{rule_name}</h4>", unsafe_allow_html=True)
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
         # Images with provided URLs
