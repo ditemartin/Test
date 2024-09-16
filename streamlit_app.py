@@ -18,12 +18,7 @@ css = """
 table {
     width: 100%;
 }
-th {
-    text-align: center;
-}
-td {
-    text-align: center;
-}
+
 table th:nth-child(2), table td:nth-child(2) {
     max-width: 150px;
     overflow: hidden;
