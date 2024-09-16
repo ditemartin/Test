@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-
 # Inject custom CSS to control the width of the main content
 st.markdown(
     """
@@ -17,8 +16,6 @@ st.markdown(
 
 # Your application code goes here
 st.title("Custom Width Streamlit App")
-st.write(
-
 
 # Sample DataFrame
 data = {
@@ -49,4 +46,4 @@ table th:nth-child(2), table td:nth-child(2) {
 
 # Display the table with custom CSS
 st.markdown(css, unsafe_allow_html=True)
-st.markdown(df.to_html(escape=False, index=False), unsafe_allow_html=True))
+st.markdown(df.to_html(escape=False, index=False), unsafe_allow_html=True)
