@@ -1,6 +1,5 @@
 import streamlit as st
 
-# Set up the page title and layout
 st.set_page_config(page_title="Průvodce pro ověřování produktových párů", layout="wide")
 
 # Adjust the page width using custom CSS
@@ -12,20 +11,19 @@ st.markdown(
         margin: 0 auto;
     }
     .custom-button {
-        background-color: #d0e7ff;  /* Slightly blue background */
-        color: black;  /* Black text */
-        font-size: 18px;  /* Slightly larger font size */
+        background-color: #d0e7ff;
+        color: black;
+        font-size: 18px;
         padding: 10px 20px;
-        border: 2px solid #609BFF;  /* Border to resemble the original button shape */
+        border: 2px solid #609BFF;
         border-radius: 18px;
         text-align: center;
         display: inline-block;
         cursor: pointer;
     }
     .custom-button:hover {
-        background-color: #b0d4ff;  /* Slightly darker blue on hover */
+        background-color: #b0d4ff;
     }
-    /* Reduce padding and margins in the Streamlit container */
     .stImage {
         padding: 0;
         margin: 0;
@@ -35,10 +33,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Page Header
 st.header("Průvodce pro ověřování produktových párů")
 
-# Přehled Section
 st.subheader("Jak na to?")
 st.write("""
 V některých případech to je velmi jednoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat detailně.
@@ -53,11 +49,10 @@ Odměna je 150 Kč za 1.000 zkontrolovaných produktů.
 
 st.subheader("Přesnost")
 st.write("""
-Je nám jasné, že nikdo nedosáhne 100% přesnosti. Chceme ale vytvořit podmínky, které vám pomohou se k tomuto číslu co nejvíce přiblížit. Abychom zajistili co nejvyšší kvalitu služby, některé produktové páry budou vyhodnocovány několikrát. 
-To nám umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Dlouhodobě by kontroloři měli dosahovat cca 98% přesnosti při vyhodnocování.
+Je nám jasné, že nikdo nedosáhne 100% přesnosti, rádi bychom se tomu ale co nejvíce přiblížili. Abychom zajistili co nejvyšší kvalitu služby, některé produktové páry budou vyhodnocovány několikrát. 
+To nám umožní průběžně vyhodnocovat přesnost kontroly. Dlouhodobě bychom chtěli dosahovat přesnosti nad 98 %.
 """)
 
-# Add a slightly blue button using custom styling
 st.markdown(
     """
     <a href="https://www.example.com" target="_blank">
@@ -67,20 +62,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Pravidla Section
 st.header("Jak vyhodnotit nejednoznačné případy?")
 st.write("""
 Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
 """)
 
-# Helper function to create a rule section with a single image
 def create_rule_section(rule_name, description, image_path):
     st.markdown(f"### {rule_name}")
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
         st.image(image_path, caption=f"{rule_name} - Obrázek", use_column_width=True)
 
-# Creating the rule sections with the correct image paths
 create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type.png")
 create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "images/Color.jpg")
 create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "images/Size.jpg")
