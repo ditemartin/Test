@@ -69,11 +69,11 @@ Tato sekce obsahuje základní pravidla, která by měla být dodržována při 
 """)
 
 # Helper function to create a rule section with a single image
-def create_rule_section(rule_name, description, image_path):
+def create_rule_section(rule_name, description, image_path, width=600):
     st.markdown(f"### {rule_name}")
     st.write(description)
     with st.expander(f"Příklad: {rule_name}"):
-        st.image(image_path, caption=f"{rule_name} - Obrázek")
+        st.image(image_path, caption=f"{rule_name} - Obrázek", width=width)
 
 # Creating the rule sections with the correct image paths
 create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "images/Type.png")
