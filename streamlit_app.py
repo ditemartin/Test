@@ -11,17 +11,19 @@ st.markdown(
         max-width: 1400px;
         margin: 0 auto;
     }
-    .button {
-        display: inline-block;
-        padding: 15px 25px;
-        font-size: 20px;
-        cursor: pointer;
+    .custom-button {
+        background-color: #d0e7ff;  /* Slightly blue background */
+        color: black;  /* Black text */
+        font-size: 18px;  /* Slightly larger font size */
+        padding: 10px 20px;
+        border: 2px solid #007BFF;  /* Border to resemble the original button shape */
+        border-radius: 8px;
         text-align: center;
-        text-decoration: none;
-        color: white;
-        background-color: #007BFF;
-        border-radius: 5px;
-        border: none;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .custom-button:hover {
+        background-color: #b0d4ff;  /* Slightly darker blue on hover */
     }
     </style>
     """,
@@ -29,7 +31,7 @@ st.markdown(
 )
 
 # Page Header
-st.header("Průvodce nástrojem pro ověřování produktových párů")
+st.header("Průvodce nástrojem pro ověřování shod")
 
 # Přehled Section
 st.subheader("Přehled")
@@ -45,10 +47,7 @@ V některých případech to je velmi jednoduché a shoda/rozdíl jsou jasné na
 - Jestliže uděláte chybu, můžete se vrátit tlačítkem **Zpět**.
 - Proces kontroly a důležité faktory se liší podle typu kontrolovaného zboží. U elektroniky sledujte jiné parametry než u koberců.
 - Při kontrole často mohou pomoci produktové kódy od dodavatelů.
-""")
-
-st.subheader("Odměna")
-st.write("""
+ 
 Odměna je 150 Kč za 1.000 zkontrolovaných produktů.
 """)
 
@@ -58,34 +57,8 @@ Je nám jasné, že nikdo nedosáhne 100% přesnosti. Chceme ale vytvořit podm�
 To nám umožní průběžně vyhodnocovat přesnost jednotlivých kontrolorů. Dlouhodobě by kontroloři měli dosahovat cca 98% přesnosti při vyhodnocování.
 """)
 
-# Add a blue button using HTML and CSS for external link
-st.markdown(
+# Add a slightly blue button using custom styling
+button_clicked = st.markdown(
     """
-    <a href="https://www.example.com" target="_blank" class="button">Přejít do nástroje na kontrolu produktových párů</a>
-    """,
-    unsafe_allow_html=True
-)
-
-# Pravidla Section
-st.header("Jak vyhodnotit nejednoznačné případy?")
-st.write("""
-Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
-""")
-
-# Helper function to create a rule section
-def create_rule_section(rule_name, description, image_url1, image_url2):
-    st.markdown(f"### {rule_name}")
-    st.write(description)
-    with st.expander(f"Příklad: {rule_name}"):
-        col1, col2 = st.columns(2)
-        with col1:
-            st.image(image_url1, caption=f"{rule_name} - Obrázek 1")
-        with col2:
-            st.image(image_url2, caption=f"{rule_name} - Obrázek 2")
-
-# Creating the rule sections
-create_rule_section("Typ/vzhled", "Pokud produkt vypadá jinak (i když si jsou podobné), jde o jiný produkt.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-create_rule_section("Barva", "Produkty musí mít vždy stejnou barvu i vzor.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-create_rule_section("Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-create_rule_section("Počet v balení", "Některé produktové páry mohou být principiálně správně, ale v jednom obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
-create_rule_section("Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "https://via.placeholder.com/300", "https://via.placeholder.com/300")
+    <a href="https://www.example.com" target="_blank">
+        <div class="custom-button">Přejít do nástroje na kontrolu
