@@ -90,6 +90,9 @@ Je nám jasné, že nikdo nedosáhne 100% přesnosti, rádi bychom se tomu ale c
 To nám umožní průběžně vyhodnocovat přesnost kontroly. Dlouhodobě bychom chtěli dosahovat přesnosti nad 98 %.
 """)
 
+# Add two line breaks before "Jak vyhodnotit"
+st.markdown("<br><br>", unsafe_allow_html=True)
+
 st.header("Jak vyhodnotit nejednoznačné případy?")
 st.write("""
 Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
