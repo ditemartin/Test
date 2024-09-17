@@ -2,6 +2,9 @@ import streamlit as st
 
 st.set_page_config(page_title="Průvodce pro ověřování produktových párů", layout="wide")
 
+# Add two empty rows at the top
+st.markdown("<br><br>", unsafe_allow_html=True)
+
 # Adjust the page width and create a sticky header with a button
 st.markdown(
     """
@@ -15,8 +18,9 @@ st.markdown(
     .sticky-container {
         position: fixed;
         top: 0;
-        left: 0;
-        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1200px; /* Match the width of the main content */
         background-color: white; /* Match background to page */
         z-index: 1000; /* Make sure it appears on top */
         padding: 10px 20px;
@@ -48,7 +52,7 @@ st.markdown(
     
     /* Add margin to the top of the main content to avoid being hidden behind the sticky header */
     .content {
-        margin-top: 80px;
+        margin-top: 100px;
     }
     </style>
     """,
