@@ -28,7 +28,28 @@ st.markdown(
         padding: 0;
         margin: 0;
     }
+
+    /* Floating button style */
+    .floating-button {
+        position: fixed;
+        top: 50%; /* Adjust this value to position vertically */
+        left: 20px; /* Distance from the left edge */
+        transform: translateY(-50%); /* Center the button vertically */
+        z-index: 1000; /* Make sure it appears on top of other elements */
+    }
     </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Add the floating button
+st.markdown(
+    """
+    <div class="floating-button">
+        <a href="https://www.example.com" target="_blank">
+            <div class="custom-button">Přejít do nástroje</div>
+        </a>
+    </div>
     """,
     unsafe_allow_html=True
 )
