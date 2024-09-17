@@ -84,6 +84,9 @@ V některých případech to je velmi jednoduché a shoda/rozdíl jsou jasné na
 Odměna je 150 Kč za 1.000 zkontrolovaných produktů.
 """)
 
+# Add two line breaks before "Jak vyhodnotit"
+st.markdown("<br>", unsafe_allow_html=True)
+
 st.subheader("Přesnost")
 st.write("""
 Je nám jasné, že nikdo nedosáhne 100% přesnosti, rádi bychom se tomu ale co nejvíce přiblížili. Abychom zajistili co nejvyšší kvalitu služby, některé produktové páry budou vyhodnocovány několikrát. 
