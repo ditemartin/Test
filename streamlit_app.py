@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Průvodce pro ověřování produktových párů", layout="wide")
 
-# Adjust the page width using custom CSS
+# Adjust the page width and create a sticky header with a button
 st.markdown(
     """
     <style>
@@ -10,6 +10,22 @@ st.markdown(
         max-width: 1200px;
         margin: 0 auto;
     }
+    
+    /* Sticky container for header and button */
+    .sticky-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white; /* Match background to page */
+        z-index: 1000; /* Make sure it appears on top */
+        padding: 10px 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for separation */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .custom-button {
         background-color: #d0e7ff;
         color: black;
@@ -24,28 +40,26 @@ st.markdown(
     .custom-button:hover {
         background-color: #b0d4ff;
     }
+
     .stImage {
         padding: 0;
         margin: 0;
     }
-
-    /* Floating button style */
-    .floating-button {
-        position: fixed;
-        top: 50%; /* Adjust this value to position vertically */
-        left: 20px; /* Distance from the left edge */
-        transform: translateY(-50%); /* Center the button vertically */
-        z-index: 1000; /* Make sure it appears on top of other elements */
+    
+    /* Add margin to the top of the main content to avoid being hidden behind the sticky header */
+    .content {
+        margin-top: 80px;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Add the floating button
+# Add the sticky header with the button
 st.markdown(
     """
-    <div class="floating-button">
+    <div class="sticky-container">
+        <h1>Průvodce pro ověřování produktových párů</h1>
         <a href="https://www.example.com" target="_blank">
             <div class="custom-button">Přejít do nástroje</div>
         </a>
@@ -54,7 +68,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.header("Průvodce pro ověřování produktových párů")
+# Add some margin to the top of the main content
+st.markdown('<div class="content">', unsafe_allow_html=True)
 
 st.subheader("Jak na to?")
 st.write("""
@@ -73,19 +88,6 @@ st.write("""
 Je nám jasné, že nikdo nedosáhne 100% přesnosti, rádi bychom se tomu ale co nejvíce přiblížili. Abychom zajistili co nejvyšší kvalitu služby, některé produktové páry budou vyhodnocovány několikrát. 
 To nám umožní průběžně vyhodnocovat přesnost kontroly. Dlouhodobě bychom chtěli dosahovat přesnosti nad 98 %.
 """)
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-st.markdown(
-    """
-    <a href="https://www.example.com" target="_blank">
-        <div class="custom-button">Přejít do nástroje na kontrolu produktových párů</div>
-    </a>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown("<br>", unsafe_allow_html=True)
 
 st.header("Jak vyhodnotit nejednoznačné případy?")
 st.write("""
@@ -106,13 +108,5 @@ create_rule_section(3, "Velikost", "Produkty musí být stejně velké. Velikost
 create_rule_section(4, "Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "Images/Count2.jpg")
 create_rule_section(5, "Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "Images/Parameter2.jpg")
 
-st.markdown("<br>", unsafe_allow_html=True)
-
-st.markdown(
-    """
-    <a href="https://www.example.com" target="_blank">
-        <div class="custom-button">Přejít do nástroje na kontrolu produktových párů</div>
-    </a>
-    """,
-    unsafe_allow_html=True
-)
+# Close the content div
+st.markdown('</div>', unsafe_allow_html=True)
