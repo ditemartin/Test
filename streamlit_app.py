@@ -2,9 +2,6 @@ import streamlit as st
 
 st.set_page_config(page_title="Průvodce pro ověřování produktových párů", layout="wide")
 
-# Add two empty rows at the top
-st.markdown("<br><br>", unsafe_allow_html=True)
-
 # Adjust the page width and create a sticky header with a button
 st.markdown(
     """
@@ -17,7 +14,7 @@ st.markdown(
     /* Sticky container for header and button */
     .sticky-container {
         position: fixed;
-        top: 0;
+        top: 60px; /* Adjust this value to move the sticky container lower */
         left: 50%;
         transform: translateX(-50%);
         width: 1200px; /* Match the width of the main content */
@@ -52,7 +49,7 @@ st.markdown(
     
     /* Add margin to the top of the main content to avoid being hidden behind the sticky header */
     .content {
-        margin-top: 100px;
+        margin-top: 120px; /* Increased to provide more space for the sticky header */
     }
     </style>
     """,
@@ -98,7 +95,7 @@ st.write("""
 Tato sekce obsahuje základní pravidla, která by měla být dodržována při ověřování shody produktů.
 """)
 
-# Updated function to include numbering
+# Function to create numbered rule sections
 def create_rule_section(index, rule_name, description, image_path):
     st.markdown(f"### {index}. {rule_name}")  # Add the index to the rule name
     st.write(description)
