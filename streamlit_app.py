@@ -94,7 +94,7 @@ To nám umožní průběžně vyhodnocovat přesnost kontroly. Dlouhodobě bycho
 """)
 
 # Add two line breaks before "Jak vyhodnotit"
-st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
 
 st.header("Jak vyhodnotit nejednoznačné případy?")
 st.write("""
