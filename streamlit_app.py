@@ -61,7 +61,7 @@ st.markdown(
     """
     <div class="sticky-container">
         <h1>Průvodce pro ověřování produktových párů</h1>
-        <a href="https://www.example.com" target="_blank">
+        <a href="https://console.deepscout.ai/" target="_blank">
             <div class="custom-button">Přejít do nástroje</div>
         </a>
     </div>
@@ -75,13 +75,22 @@ st.markdown('<div class="content">', unsafe_allow_html=True)
 st.subheader("Jak na to?")
 st.write("""
 V některých případech to je velmi jednoduché a shoda/rozdíl jsou jasné na první pohled. Občas je třeba produkty prozkoumat detailně.
-- Pokud si nejste jistí, použijte tlačítko **Přejít na web**, kde najdete další detaily.
-- Pokud si ani po bližším prozkoumání nejste jistí, zda jsou produkty totožné, použijte tlačítko **Problematické**.
+- Pokud si nejste jistí, přepněte na zobrazení **Porovnávat weby**, kde najdete další detaily. Na web jednotlivých eshopů se také můžete dostat proklikem přes název produktu.
+- Pokud si ani po bližším prozkoumání nejste jistí, zda jsou produkty totožné, použijte tlačítko **Nejsem si jistý**.
 - Jestliže uděláte chybu, můžete se vrátit tlačítkem **Zpět**.
 - Proces kontroly a důležité faktory se liší podle typu kontrolovaného zboží. U elektroniky sledujte jiné parametry než u koberců.
 - Při kontrole často mohou pomoci produktové kódy od dodavatelů.
 
-Odměna je 150 Kč za 1.000 zkontrolovaných produktů.
+""")
+
+st.subheader("Filtry")
+st.write("""
+Produktové páry můžete několika různými způsoby řadit a filtrovat:
+- **Náhodné páry** 
+- **Rizikové páry** nejpravděpodobnější chyby
+- **Pravděpodobné nepáry** produkty, které jen těsně nebyly vyhodnocené jako pár, ale mají vysokou pravděpodobnost, že by mohly být
+- **Nejisté páry** jsou páry, které jste dřív označili jako **Nejsem si jistý**
+- **Cenové anomálie** jsou páry, u kterých vidíme největší cenové rozdíly
 """)
 
 # Add two line breaks before "Jak vyhodnotit"
