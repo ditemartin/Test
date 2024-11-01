@@ -123,7 +123,7 @@ create_rule_section(2, "Barva", "Produkty musí mít vždy stejnou barvu i vzor.
 create_rule_section(3, "Velikost", "Produkty musí být stejně velké. Velikost je často dobrý ukazatel, pokud si podle obrázku nejste jistí, zda je produkt identický.", "Images/Size2.jpg")
 create_rule_section(4, "Počet v balení", "Některé produktové páry mohou být logicky správně, ale v každém obchodě se produkt prodává v jiném množství (např. židle vs. 4 židle).", "Images/Count2.jpg")
 create_rule_section(5, "Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "Images/Parameter2.jpg")
-create_rule_section(6, "Nesymetrické informace", "Pokud je jeden produkt jasně specifikovaný (např velikost L, nebo materiál) a druhý nabízí na stejné URL adrese výběr z více variant, které jsou stejně naceněné, jde o stejný produkt. Pokud je každý varianta na jiné URL adrese, nebo má jinou cenu, nejde o stejný produkt.", "Images/Size_symmetry.png")
+create_rule_section(6, "Nesymetrické informace", "Pokud je jeden produkt jasně specifikovaný (např velikost L, nebo materiál) a druhý nabízí na *stejné URL* adrese výběr z *více variant*, které jsou *stejně naceněné*, jde o *stejný produkt*. Pokud je každý varianta na jiné URL adrese, nebo má jinou cenu, nejde o stejný produkt.", "Images/Size_symmetry.png")
 
 # Close the content div
 st.markdown('</div>', unsafe_allow_html=True)
