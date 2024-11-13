@@ -125,6 +125,7 @@ create_rule_section(4, "Počet v balení", "Některé produktové páry mohou b�
 create_rule_section(5, "Technické parametry", "Identicky vypadající produkty mohou mít jiné parametry: výkon, materiál, výdrž baterie, apod.", "Images/Parameter2.jpg")
 create_rule_section(6, "Nesymetrické informace", "Pokud je jeden produkt jasně specifikovaný (např velikost L, nebo materiál) a druhý nabízí na **stejné URL** adrese výběr z **více variant**, které jsou **stejně naceněné**, jde o **stejný produkt**. Pokud je každý varianta na jiné URL adrese, nebo má jinou cenu, nejde o stejný produkt.", "Images/Size_symmetry.png")
 create_rule_section(7, "Chybějící produkt", "Pokud při zobrazení webů, ani při prokliku na web konkurenta není produkt k nalezení, označte ho jako nejistý. Pravděpodobně byl od posledního monitoringu vyřazený z nabídky", "Images/404error.png")
+create_rule_section(8, "Kvalita", "Různá kvalita zboží, poškozený obal, použité zboží, brzké datum spotřeby - jde o jiný produkt", "Images/quality.png")
 
 # Close the content div
 st.markdown('</div>', unsafe_allow_html=True)
